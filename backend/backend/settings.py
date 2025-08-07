@@ -10,9 +10,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'changeme')
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split(',')
 
-# Add your frontend domain here (REPLACE this with your actual Vercel frontend URL)
+# Add your frontend domain here (NO trailing slash!)
 CSRF_TRUSTED_ORIGINS = [
-    'https://expense-tracker-frontend-gamma-azure.vercel.app/'  # ← replace this with actual domain
+    'https://expense-tracker-frontend-gamma-azure.vercel.app'
 ]
 
 # Application definition
@@ -86,7 +86,11 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOW_ALL_ORIGINS = True  # You can make this more strict later
+# CORS settings
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOWED_ORIGINS = [
+    'https://expense-tracker-frontend-gamma-azure.vercel.app'
+]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
